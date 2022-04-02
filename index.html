@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Equation Solver</title>
+    <style>
+        body {
+            background-color: lightgreen;
+            color: brown;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        button {
+            padding: 7px 22px;
+            color: white;
+            background-color: brown;
+            border-radius: 3px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: large;
+            box-sizing: border-box;
+        }
+
+        .middle {
+           display: block;
+           margin: 3% auto; 
+        }
+
+        .middle1 {
+           display: block;
+           margin: 3% auto;
+           width: 500px;
+           height: 570px; 
+        }
+
+        #bttns {
+            display: grid;
+            grid-template-columns: auto 200px auto;
+        }
+
+        #ansfield {
+            display: grid;
+            grid-template-columns: auto 75% auto;
+        }
+
+        #grid1 {
+            display: grid;
+            grid-template-columns: auto 80% auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .middle1 {
+                width: 98%;
+                height: 100%;
+                align-self: center;
+                padding-top: 30px;
+            }
+
+            .spec {
+                padding-left: 7%;
+            }
+
+}
+
+footer {
+    background-color: lightgreen;
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <section class="middle1" style="border: 1px solid brown; background-color: white; ">
+            <div id="section1">
+            <h1 style="text-align: center;">QUADRATIC EQUATION SOLVER</h1>
+            <hr style="margin: 2px 12px; color: brown;">
+            </div>
+            <div id="grid1" class="middle spec">
+                <div></div>
+                <div>
+                <label>
+                    a = <input onfocus=this.value=''; style="width: 25%; margin-bottom: 20px; margin-right: 22px; margin-top: 30px;" type="number" id="Letter_a" name="letter_a" required>
+                </label>
+                <label>
+                    b = <input style="width: 25%;" onfocus=this.value=''; type="number" id="Letter_b" name="letter_b" required>
+                </label><br>
+                    <div class="Middle">
+                <label>
+                        c = <input style="width: 25%; margin-bottom: 35px;"; onfocus=this.value=''; type="number" id="Letter_c" name="letter_c" required> 
+                </label>
+                    </div>
+                    </div>
+                    <div></div>    
+            </div>
+
+            <div id="bttns" class="middle spec " style="margin-bottom: 37px;">
+                <div></div>
+                <div>
+                <button style=" background-color: rgb(134, 208, 233); margin-right: 16px;" onclick="Solve();">solve</button>
+                <button onclick="Clear();">clear</button>
+                </div>
+                <div></div>
+            </div> 
+            <div id="ansfield" class="spec" style="margin-bottom: 12px;">
+                <div></div>
+                <div>
+                    <p class="spec" style="color: red;" id="error"></p>
+                <label>
+                    X<sub>1</sub> = <input id="Answer1" style="width: 68%; margin-bottom: 12px;" type="text">
+                </label><br>
+                <label>
+                    X<sub>2</sub> = <input style="width: 68%; margin-bottom: 85px" id="Answer2" type="text">
+                </label>
+                </div>
+                <div></div> 
+            </div>
+            <footer style="text-align: center; margin-bottom: 15px;">
+                <h3>Programmed By: Charles Bih Dev</h3>
+                <h3 style="margin-top: -11px;">&copy; 2022</h3>
+            </footer>
+            
+    </section>
+    <script>  
+        
+        function Solve(){ 
+            var a = Number(document.getElementById('Letter_a').value);
+            var b = Number(document.getElementById('Letter_b').value);
+            var c = Number(document.getElementById('Letter_c').value);
+            var d = Number(document.getElementById('Answer1').value);
+            var e = Number(document.getElementById('Answer2').value);
+            
+            if (a!="" && b!="" && c!="") {
+                var complex = (b**2) - (4*a*c);
+                document.getElementById('error').innerHTML = ""
+
+                if (complex >= 0){
+                    var squareRoot = Math.sqrt(complex);
+                var calc = (-1 * b) + squareRoot;
+                var calc1 = (-1 * b) - squareRoot;
+                var final1 = calc / (2*a);
+                var final2 = calc1 / (2*a);
+                document.getElementById('Answer1').value = final1;
+                document.getElementById('Answer2').value = final2;
+                } else {
+                    ip = -b/(2*a);
+                    rp = Math.sqrt(-complex)/2*a;
+
+                    final1 = ip + " + " + rp + "i" ;
+                    final2 =  ip + " - " + rp + "i" ;
+                    document.getElementById('Answer1').value =  final1;
+                    document.getElementById('Answer2').value =  final2;
+                }                          
+        }
+         else{
+            document.getElementById('error').innerHTML = "!!!!Some inputs fileds are empty";
+            document.getElementById('Answer2').value = "";
+            document.getElementById('Answer1').value = "";
+        }
+    }
+
+        function Clear(){
+                document.getElementById('Answer2').value = "";
+                document.getElementById('Answer1').value = "";
+                document.getElementById('Letter_a').value = "";
+                document.getElementById('Letter_b').value = "";
+                document.getElementById('Letter_c').value = "";
+                }; 
+        
+    </script>
+</body>
+</html>
